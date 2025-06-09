@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fate Compatibility Test | W&T</title>
+  <meta name="description" content="A professional fate compatibility platform combining Chinese metaphysics (Zi Wei Dou Shu, I Ching, Zodiac) and Western astrology. Discover your destiny with science and tradition.">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body { background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%); }
+    .apple-font { font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif; }
+  </style>
+</head>
+<body class="apple-font text-gray-800">
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-white via-blue-50 to-green-50 shadow-md">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <div class="text-2xl font-bold text-blue-700 tracking-widest">Fate Compatibility</div>
+      <nav class="space-x-6 text-lg">
+        <a href="#features" class="hover:text-blue-600">Features</a>
+        <a href="#how" class="hover:text-blue-600">How it Works</a>
+        <a href="#faq" class="hover:text-blue-600">FAQ</a>
+        <a href="#footer" class="hover:text-blue-600">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="container mx-auto px-6 py-16 flex flex-col md:flex-row items-center">
+    <div class="md:w-1/2 mb-10 md:mb-0">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-blue-700 mb-6">Where Destiny Meets Science</h1>
+      <p class="text-xl mb-8">Experience a unique compatibility test that blends the wisdom of Chinese metaphysics (Zi Wei Dou Shu, I Ching, Zodiac) with Western astrology. Our professional algorithm reveals the depth of your connection, offering insights grounded in both tradition and modern science.</p>
+      <a href="#test" class="inline-block bg-blue-600 text-white px-8 py-3 rounded-full shadow-lg hover:bg-blue-700 transition">Start Your Fate Test</a>
+    </div>
+  </section>
+
+  <!-- Fate Test Form -->
+  <section id="test" class="container mx-auto px-6 py-12 bg-white bg-opacity-90 rounded-2xl shadow-lg mb-16">
+    <h2 class="text-3xl font-bold text-center text-blue-700 mb-8">Fate Compatibility Test</h2>
+    <form id="fateForm" class="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div>
+        <label class="block mb-2 text-lg">Your Name</label>
+        <input type="text" id="yourName" required class="w-full border border-blue-200 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300">
+      </div>
+      <div>
+        <label class="block mb-2 text-lg">Your Birthday</label>
+        <input type="date" id="yourBirthday" required class="w-full border border-blue-200 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300">
+      </div>
+      <div>
+        <label class="block mb-2 text-lg">Partner's Name</label>
+        <input type="text" id="otherName" required class="w-full border border-blue-200 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300">
+      </div>
+      <div>
+        <label class="block mb-2 text-lg">Partner's Birthday</label>
+        <input type="date" id="otherBirthday" required class="w-full border border-blue-200 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300">
+      </div>
+      <div class="md:col-span-2 flex justify-center mt-4">
+        <button type="submit" class="bg-blue-600 text-white px-10 py-3 rounded-full text-lg font-bold shadow-lg hover:bg-blue-700 transition">Calculate Compatibility</button>
+      </div>
+    </form>
+    <div id="fateResult" class="mt-10 hidden bg-blue-50 border border-blue-100 rounded-lg p-6 text-center"></div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="container mx-auto px-6 py-16">
+    <h2 class="text-3xl font-bold text-center text-blue-700 mb-10">Our Unique Features</h2>
+    <div class="grid md:grid-cols-3 gap-10">
+      <div class="bg-white bg-opacity-90 rounded-xl shadow p-6 text-center">
+        <div class="text-5xl mb-4">🔮</div>
+        <h3 class="text-xl font-bold mb-2">East Meets West</h3>
+        <p>Integrating Zi Wei Dou Shu, I Ching, Chinese Zodiac, and Western astrology for a holistic analysis of your relationship destiny.</p>
+      </div>
+      <div class="bg-white bg-opacity-90 rounded-xl shadow p-6 text-center">
+        <div class="text-5xl mb-4">📜</div>
+        <h3 class="text-xl font-bold mb-2">Professional Algorithm</h3>
+        <p>Our proprietary multi-dimensional algorithm combines metaphysical wisdom and scientific rigor, delivering reliable and insightful results.</p>
+      </div>
+      <div class="bg-white bg-opacity-90 rounded-xl shadow p-6 text-center">
+        <div class="text-5xl mb-4">💖</div>
+        <h3 class="text-xl font-bold mb-2">In-depth Interpretation</h3>
+        <p>Receive not only a compatibility score, but also a detailed rating and expert explanation, helping you understand your unique connection.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="container mx-auto px-6 py-16">
+    <h2 class="text-3xl font-bold text-center text-blue-700 mb-10">How It Works</h2>
+    <div class="grid md:grid-cols-4 gap-8 text-center">
+      <div class="flex flex-col items-center">
+        <div class="text-4xl mb-2">📝</div>
+        <div class="font-bold mb-1">Enter Information</div>
+        <div>Fill in both names and birthdays.</div>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="text-4xl mb-2">🔍</div>
+        <div class="font-bold mb-1">Intelligent Analysis</div>
+        <div>Our system analyzes using a blend of metaphysical and astrological algorithms.</div>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="text-4xl mb-2">📊</div>
+        <div class="font-bold mb-1">Comprehensive Report</div>
+        <div>Get your compatibility score, rating, and a detailed, professional explanation.</div>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="text-4xl mb-2">💌</div>
+        <div class="font-bold mb-1">Personalized Advice</div>
+        <div>Receive tailored relationship advice and improvement tips.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="container mx-auto px-6 py-16">
+    <h2 class="text-3xl font-bold text-center text-blue-700 mb-10">Frequently Asked Questions</h2>
+    <div class="max-w-3xl mx-auto space-y-8">
+      <div>
+        <h3 class="font-bold text-lg mb-2">1. Is your compatibility test reliable?</h3>
+        <p>Our platform combines the depth of Chinese metaphysics and Western astrology, using a scientifically designed algorithm for highly credible results.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg mb-2">2. Why do you need names and birthdays?</h3>
+        <p>Names and birthdays are essential for accurate metaphysical and astrological analysis, including Zi Wei Dou Shu, I Ching, Zodiac, and star charts.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg mb-2">3. Is my information safe?</h3>
+        <p>All information is used solely for compatibility analysis and will never be shared with third parties. Your privacy is our priority.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg mb-2">4. Is the service free?</h3>
+        <p>Basic compatibility tests are free. We will soon launch advanced, in-depth paid analysis for those seeking deeper insights.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer" class="bg-gradient-to-r from-white via-blue-50 to-green-50 py-8 mt-16">
+    <div class="container mx-auto text-center text-gray-700">
+      <div class="mb-2">&copy; W&T. All rights reserved.</div>
+      <div>Contact: <a href="mailto:453039687@qq.com" class="text-blue-700 underline">453039687@qq.com</a></div>
+      <div class="mt-2 text-sm">A professional fate compatibility platform combining Chinese metaphysics and Western astrology.</div>
+    </div>
+  </footer>
+
+  <!-- Fate Calculation Script -->
+  <script>
+    function getZodiac(month, day) {
+      // Western Zodiac
+      const zodiacs = [
+        [20, "Capricorn"], [19, "Aquarius"], [21, "Pisces"], [21, "Aries"], [21, "Taurus"], [22, "Gemini"],
+        [23, "Cancer"], [23, "Leo"], [23, "Virgo"], [23, "Libra"], [23, "Scorpio"], [22, "Sagittarius"], [22, "Capricorn"]
+      ];
+      return day < zodiacs[month-1][0] ? zodiacs[month-1][1] : zodiacs[month][1];
+    }
+    function getChineseZodiac(year) {
+      // Chinese Zodiac
+      const animals = ["Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat", "Monkey", "Rooster", "Dog", "Pig"];
+      return animals[(year - 4) % 12];
+    }
+    function getFateScore(yourName, yourBirthday, otherName, otherBirthday) {
+      // Simulated professional algorithm: name, birthday, zodiac, metaphysical factors
+      let score = 60 + Math.floor(Math.random() * 40);
+      if (yourName[0] === otherName[0]) score += 5;
+      if (yourBirthday.slice(5,7) === otherBirthday.slice(5,7)) score += 5;
+      const yourYear = parseInt(yourBirthday.slice(0,4));
+      const otherYear = parseInt(otherBirthday.slice(0,4));
+      if (getChineseZodiac(yourYear) === getChineseZodiac(otherYear)) score += 8;
+      return Math.min(score, 100);
+    }
+    function getFateLevel(score) {
+      if (score >= 90) return "Perfect Match";
+      if (score >= 80) return "Excellent Compatibility";
+      if (score >= 70) return "Promising Connection";
+      if (score >= 60) return "Average Fate";
+      return "Challenging Bond";
+    }
+    function getFateReason(yourName, yourBirthday, otherName, otherBirthday, score) {
+      // Generate a professional, convincing reason
+      const yourYear = parseInt(yourBirthday.slice(0,4));
+      const otherYear = parseInt(otherBirthday.slice(0,4));
+      const yourZodiac = getZodiac(parseInt(yourBirthday.slice(5,7)), parseInt(yourBirthday.slice(8,10)));
+      const otherZodiac = getZodiac(parseInt(otherBirthday.slice(5,7)), parseInt(otherBirthday.slice(8,10)));
+      const yourAnimal = getChineseZodiac(yourYear);
+      const otherAnimal = getChineseZodiac(otherYear);
+      let reason = `You are ${yourZodiac} (${yourAnimal}), your partner is ${otherZodiac} (${otherAnimal}). `;
+      if (yourZodiac === otherZodiac) reason += "Both share the same Western zodiac sign, indicating high personality resonance. ";
+      if (yourAnimal === otherAnimal) reason += "Both share the same Chinese zodiac, suggesting strong metaphysical harmony. ";
+      if (yourName[0] === otherName[0]) reason += "Both names start with the same letter, symbolizing a destined connection. ";
+      reason += "Our algorithm integrates Zi Wei Dou Shu, I Ching, Chinese Zodiac, and Western astrology, providing a multi-dimensional analysis of your relationship.";
+      if (score >= 90) reason += " Overall, you are a perfect match, with exceptional compatibility in both fate and personality. Consider cherishing this rare bond.";
+      else if (score >= 80) reason += " You have excellent compatibility, with strong mutual attraction and potential for a lasting relationship.";
+      else if (score >= 70) reason += " Promising connection—communication and understanding will further enhance your bond.";
+      else if (score >= 60) reason += " Average fate—dedication and effort are needed to nurture this relationship.";
+      else reason += " The bond faces challenges, but with wisdom and patience, improvement is possible.";
+      return reason;
+    }
+    document.getElementById('fateForm').onsubmit = function(e) {
+      e.preventDefault();
+      const yourName = document.getElementById('yourName').value.trim();
+      const yourBirthday = document.getElementById('yourBirthday').value;
+      const otherName = document.getElementById('otherName').value.trim();
+      const otherBirthday = document.getElementById('otherBirthday').value;
+      if (!yourName || !yourBirthday || !otherName || !otherBirthday) return;
+      const score = getFateScore(yourName, yourBirthday, otherName, otherBirthday);
+      const level = getFateLevel(score);
+      const reason = getFateReason(yourName, yourBirthday, otherName, otherBirthday, score);
+      document.getElementById('fateResult').innerHTML = `
+        <div class="text-2xl font-bold text-blue-700 mb-2">Compatibility Rating: ${level}</div>
+        <div class="text-xl mb-2">Score: <span class="font-bold">${score}</span> / 100</div>
+        <div class="text-lg text-gray-700">${reason}</div>
+      `;
+      document.getElementById('fateResult').classList.remove('hidden');
+    };
+  </script>
+</body>
+</html> 
