@@ -78,6 +78,53 @@ const translations = {
       copyright: '版权所有 © 2024 W&T',
       contact: '联系方式：453039687@qq.com',
       description: '一个专业的缘分测试平台，结合中国玄学和西方占星术。'
+    },
+    testResult: {
+      perfectMatch: '完美匹配',
+      excellentCompatibility: '极佳缘分',
+      promisingConnection: '良好缘分',
+      averageFate: '一般缘分',
+      challengingBond: '需要努力',
+      score: '缘分分数',
+      compatibilityRating: '缘分评级',
+      overall: '总体评价',
+      sameZodiac: '你们拥有相同的西方星座，表明性格高度契合。',
+      sameChineseZodiac: '你们拥有相同的生肖，暗示着强大的玄学和谐。',
+      sameNameLetter: '你们的名字以相同的字母开头，象征着命中注定的联系。',
+      algorithmNote: '我们的算法整合了紫微斗数、易经、中国生肖和西方占星术，为你们的关系提供多维分析。',
+      perfectMatchNote: '总的来说，你们是完美的一对，在命运和性格上都有非凡的契合度。请珍惜这份难得的缘分。',
+      excellentNote: '你们有极佳的缘分，相互吸引力强，有发展长久关系的潜力。',
+      promisingNote: '良好的缘分——通过沟通和理解可以进一步增进你们的感情。',
+      averageNote: '一般的缘分——需要付出努力和用心经营这段关系。',
+      challengingNote: '这段缘分面临挑战，但通过智慧和耐心，可以改善关系。'
+    },
+    zodiac: {
+      Aries: '白羊座',
+      Taurus: '金牛座',
+      Gemini: '双子座',
+      Cancer: '巨蟹座',
+      Leo: '狮子座',
+      Virgo: '处女座',
+      Libra: '天秤座',
+      Scorpio: '天蝎座',
+      Sagittarius: '射手座',
+      Capricorn: '摩羯座',
+      Aquarius: '水瓶座',
+      Pisces: '双鱼座'
+    },
+    chineseZodiac: {
+      Rat: '鼠',
+      Ox: '牛',
+      Tiger: '虎',
+      Rabbit: '兔',
+      Dragon: '龙',
+      Snake: '蛇',
+      Horse: '马',
+      Goat: '羊',
+      Monkey: '猴',
+      Rooster: '鸡',
+      Dog: '狗',
+      Pig: '猪'
     }
   },
   'en': {
@@ -159,6 +206,53 @@ const translations = {
       copyright: '© 2024 W&T. All rights reserved.',
       contact: 'Contact: 453039687@qq.com',
       description: 'A professional fate compatibility platform combining Chinese metaphysics and Western astrology.'
+    },
+    testResult: {
+      perfectMatch: 'Perfect Match',
+      excellentCompatibility: 'Excellent Compatibility',
+      promisingConnection: 'Promising Connection',
+      averageFate: 'Average Fate',
+      challengingBond: 'Challenging Bond',
+      score: 'Score',
+      compatibilityRating: 'Compatibility Rating',
+      overall: 'Overall',
+      sameZodiac: 'Both share the same Western zodiac sign, indicating high personality resonance.',
+      sameChineseZodiac: 'Both share the same Chinese zodiac, suggesting strong metaphysical harmony.',
+      sameNameLetter: 'Both names start with the same letter, symbolizing a destined connection.',
+      algorithmNote: 'Our algorithm integrates Zi Wei Dou Shu, I Ching, Chinese Zodiac, and Western astrology, providing a multi-dimensional analysis of your relationship.',
+      perfectMatchNote: 'Overall, you are a perfect match, with exceptional compatibility in both fate and personality. Consider cherishing this rare bond.',
+      excellentNote: 'You have excellent compatibility, with strong mutual attraction and potential for a lasting relationship.',
+      promisingNote: 'Promising connection—communication and understanding will further enhance your bond.',
+      averageNote: 'Average fate—dedication and effort are needed to nurture this relationship.',
+      challengingNote: 'The bond faces challenges, but with wisdom and patience, improvement is possible.'
+    },
+    zodiac: {
+      Aries: 'Aries',
+      Taurus: 'Taurus',
+      Gemini: 'Gemini',
+      Cancer: 'Cancer',
+      Leo: 'Leo',
+      Virgo: 'Virgo',
+      Libra: 'Libra',
+      Scorpio: 'Scorpio',
+      Sagittarius: 'Sagittarius',
+      Capricorn: 'Capricorn',
+      Aquarius: 'Aquarius',
+      Pisces: 'Pisces'
+    },
+    chineseZodiac: {
+      Rat: 'Rat',
+      Ox: 'Ox',
+      Tiger: 'Tiger',
+      Rabbit: 'Rabbit',
+      Dragon: 'Dragon',
+      Snake: 'Snake',
+      Horse: 'Horse',
+      Goat: 'Goat',
+      Monkey: 'Monkey',
+      Rooster: 'Rooster',
+      Dog: 'Dog',
+      Pig: 'Pig'
     }
   }
 };
@@ -197,6 +291,28 @@ function setLanguage(lang) {
   localStorage.setItem('language', lang);
   updateContent();
   updateLanguageButtons();
+  
+  // 如果有测试结果，更新结果的语言
+  const fateResult = document.getElementById('fateResult');
+  if (!fateResult.classList.contains('hidden')) {
+    const yourName = document.getElementById('yourName').value.trim();
+    const yourBirthday = document.getElementById('yourBirthday').value;
+    const otherName = document.getElementById('otherName').value.trim();
+    const otherBirthday = document.getElementById('otherBirthday').value;
+    
+    if (yourName && yourBirthday && otherName && otherBirthday) {
+      const score = getFateScore(yourName, yourBirthday, otherName, otherBirthday);
+      const level = getFateLevel(score);
+      const reason = getFateReason(yourName, yourBirthday, otherName, otherBirthday, score);
+      const t = translations[lang].testResult;
+      
+      fateResult.innerHTML = `
+        <div class="text-2xl font-bold text-blue-700 mb-2">${t.compatibilityRating}: ${level}</div>
+        <div class="text-xl mb-2">${t.score}: <span class="font-bold">${score}</span> / 100</div>
+        <div class="text-lg text-gray-700">${reason}</div>
+      `;
+    }
+  }
 }
 
 // 更新页面内容
@@ -263,6 +379,188 @@ function updateContent() {
   document.querySelector('.footer-contact').textContent = t.footer.contact;
   document.querySelector('.footer-description').textContent = t.footer.description;
 }
+
+function getFateLevel(score) {
+  const lang = getCurrentLanguage();
+  const t = translations[lang].testResult;
+  if (score >= 90) return t.perfectMatch;
+  if (score >= 80) return t.excellentCompatibility;
+  if (score >= 70) return t.promisingConnection;
+  if (score >= 60) return t.averageFate;
+  return t.challengingBond;
+}
+
+function getZodiac(month, day) {
+  // Western Zodiac
+  const zodiacs = [
+    [20, "Capricorn"], [19, "Aquarius"], [21, "Pisces"], [21, "Aries"], [21, "Taurus"], [22, "Gemini"],
+    [23, "Cancer"], [23, "Leo"], [23, "Virgo"], [23, "Libra"], [23, "Scorpio"], [22, "Sagittarius"], [22, "Capricorn"]
+  ];
+  const zodiac = day < zodiacs[month-1][0] ? zodiacs[month-1][1] : zodiacs[month][1];
+  const lang = getCurrentLanguage();
+  return translations[lang].zodiac[zodiac];
+}
+
+// 获取生肖英文key（用于内部逻辑）
+function getChineseZodiacKey(year) {
+  const animals = ["Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat", "Monkey", "Rooster", "Dog", "Pig"];
+  return animals[(year - 4) % 12];
+}
+
+// 获取生肖显示（用于界面显示）
+function getChineseZodiac(year) {
+  const key = getChineseZodiacKey(year);
+  const lang = getCurrentLanguage();
+  return translations[lang].chineseZodiac[key];
+}
+
+function getFateReason(yourName, yourBirthday, otherName, otherBirthday, score) {
+  const lang = getCurrentLanguage();
+  const t = translations[lang].testResult;
+  
+  const yourYear = parseInt(yourBirthday.slice(0,4));
+  const otherYear = parseInt(otherBirthday.slice(0,4));
+  const yourZodiac = getZodiac(parseInt(yourBirthday.slice(5,7)), parseInt(yourBirthday.slice(8,10)));
+  const otherZodiac = getZodiac(parseInt(otherBirthday.slice(5,7)), parseInt(otherBirthday.slice(8,10)));
+  const yourAnimal = getChineseZodiac(yourYear);
+  const otherAnimal = getChineseZodiac(otherYear);
+  
+  let reason = '';
+  if (lang === 'zh-CN') {
+    reason = `${t.overall}：${yourZodiac}（${yourAnimal}）和${otherZodiac}（${otherAnimal}）。`;
+  } else {
+    reason = `${t.overall}: ${yourZodiac} (${yourAnimal}) and ${otherZodiac} (${otherAnimal}).`;
+  }
+  
+  if (yourZodiac === otherZodiac) reason += t.sameZodiac + ' ';
+  if (yourAnimal === otherAnimal) reason += t.sameChineseZodiac + ' ';
+  if (yourName[0] === otherName[0]) reason += t.sameNameLetter + ' ';
+  
+  reason += t.algorithmNote + ' ';
+  
+  if (score >= 90) reason += t.perfectMatchNote;
+  else if (score >= 80) reason += t.excellentNote;
+  else if (score >= 70) reason += t.promisingNote;
+  else if (score >= 60) reason += t.averageNote;
+  else reason += t.challengingNote;
+  
+  return reason;
+}
+
+function getFateScore(yourName, yourBirthday, otherName, otherBirthday) {
+  // 使用名字和生日的组合生成一个确定性的分数
+  let baseScore = 60;
+  
+  // 计算名字相似度
+  const nameSimilarity = calculateNameSimilarity(yourName, otherName);
+  baseScore += nameSimilarity;
+  
+  // 计算生日相似度
+  const birthdaySimilarity = calculateBirthdaySimilarity(yourBirthday, otherBirthday);
+  baseScore += birthdaySimilarity;
+  
+  // 计算生肖相合度
+  const zodiacCompatibility = calculateZodiacCompatibility(yourBirthday, otherBirthday);
+  baseScore += zodiacCompatibility;
+  
+  // 确保分数在0-100之间
+  return Math.min(Math.max(baseScore, 0), 100);
+}
+
+// 计算名字相似度（0-10分）
+function calculateNameSimilarity(name1, name2) {
+  let score = 0;
+  
+  // 首字母相同加5分
+  if (name1[0].toLowerCase() === name2[0].toLowerCase()) {
+    score += 5;
+  }
+  
+  // 名字长度相近加5分
+  const lengthDiff = Math.abs(name1.length - name2.length);
+  if (lengthDiff <= 1) {
+    score += 5;
+  }
+  
+  return score;
+}
+
+// 计算生日相似度（0-15分）
+function calculateBirthdaySimilarity(birthday1, birthday2) {
+  let score = 0;
+  
+  // 月份相同加5分
+  if (birthday1.slice(5, 7) === birthday2.slice(5, 7)) {
+    score += 5;
+  }
+  
+  // 日期相近（相差不超过3天）加5分
+  const day1 = parseInt(birthday1.slice(8, 10));
+  const day2 = parseInt(birthday2.slice(8, 10));
+  if (Math.abs(day1 - day2) <= 3) {
+    score += 5;
+  }
+  
+  // 年龄相近（相差不超过3岁）加5分
+  const year1 = parseInt(birthday1.slice(0, 4));
+  const year2 = parseInt(birthday2.slice(0, 4));
+  if (Math.abs(year1 - year2) <= 3) {
+    score += 5;
+  }
+  
+  return score;
+}
+
+// 计算生肖相合度（0-15分）
+function calculateZodiacCompatibility(birthday1, birthday2) {
+  const year1 = parseInt(birthday1.slice(0, 4));
+  const year2 = parseInt(birthday2.slice(0, 4));
+  const animal1 = getChineseZodiacKey(year1); // 用英文key
+  const animal2 = getChineseZodiacKey(year2); // 用英文key
+  
+  // 生肖相合度对照表
+  const compatibilityMap = {
+    'Rat': { 'Rat': 15, 'Dragon': 10, 'Monkey': 10, 'Ox': 5, 'Tiger': 5, 'Snake': 5, 'Horse': 0, 'Goat': 0, 'Rooster': 0, 'Dog': 0, 'Pig': 0, 'Rabbit': 0 },
+    'Ox': { 'Rat': 5, 'Ox': 15, 'Snake': 10, 'Rooster': 10, 'Tiger': 5, 'Dragon': 5, 'Horse': 0, 'Goat': 0, 'Monkey': 0, 'Dog': 0, 'Pig': 0, 'Rabbit': 0 },
+    'Tiger': { 'Rat': 5, 'Ox': 5, 'Tiger': 15, 'Horse': 10, 'Dragon': 5, 'Snake': 5, 'Goat': 0, 'Monkey': 0, 'Rooster': 0, 'Dog': 0, 'Pig': 0, 'Rabbit': 0 },
+    'Rabbit': { 'Rabbit': 15, 'Goat': 10, 'Pig': 10, 'Dragon': 5, 'Snake': 5, 'Horse': 5, 'Rat': 0, 'Ox': 0, 'Tiger': 0, 'Monkey': 0, 'Rooster': 0, 'Dog': 0 },
+    'Dragon': { 'Rat': 10, 'Ox': 5, 'Tiger': 5, 'Dragon': 15, 'Monkey': 10, 'Snake': 5, 'Horse': 0, 'Goat': 0, 'Rooster': 0, 'Dog': 0, 'Pig': 0, 'Rabbit': 0 },
+    'Snake': { 'Rat': 5, 'Ox': 10, 'Tiger': 5, 'Dragon': 5, 'Snake': 15, 'Rooster': 10, 'Horse': 0, 'Goat': 0, 'Monkey': 0, 'Dog': 0, 'Pig': 0, 'Rabbit': 0 },
+    'Horse': { 'Tiger': 10, 'Horse': 15, 'Goat': 10, 'Rabbit': 5, 'Dragon': 0, 'Snake': 0, 'Monkey': 0, 'Rooster': 0, 'Dog': 0, 'Pig': 0, 'Rat': 0 },
+    'Goat': { 'Rabbit': 10, 'Horse': 10, 'Goat': 15, 'Pig': 10, 'Tiger': 0, 'Dragon': 0, 'Snake': 0, 'Monkey': 0, 'Rooster': 0, 'Dog': 0, 'Rat': 0 },
+    'Monkey': { 'Rat': 10, 'Dragon': 10, 'Monkey': 15, 'Tiger': 0, 'Snake': 0, 'Horse': 0, 'Goat': 0, 'Rooster': 0, 'Dog': 0, 'Pig': 0, 'Rabbit': 0 },
+    'Rooster': { 'Ox': 10, 'Snake': 10, 'Rooster': 15, 'Rat': 0, 'Tiger': 0, 'Dragon': 0, 'Horse': 0, 'Goat': 0, 'Monkey': 0, 'Dog': 0, 'Pig': 0, 'Rabbit': 0 },
+    'Dog': { 'Dog': 15, 'Pig': 10, 'Rat': 0, 'Ox': 0, 'Tiger': 0, 'Dragon': 0, 'Snake': 0, 'Horse': 0, 'Goat': 0, 'Monkey': 0, 'Rooster': 0, 'Rabbit': 0 },
+    'Pig': { 'Rabbit': 10, 'Goat': 10, 'Dog': 10, 'Pig': 15, 'Rat': 0, 'Ox': 0, 'Tiger': 0, 'Dragon': 0, 'Snake': 0, 'Horse': 0, 'Monkey': 0, 'Rooster': 0 }
+  };
+  
+  return compatibilityMap[animal1][animal2] || 0;
+}
+
+// 更新测试结果显示函数
+document.getElementById('fateForm').onsubmit = function(e) {
+  e.preventDefault();
+  const yourName = document.getElementById('yourName').value.trim();
+  const yourBirthday = document.getElementById('yourBirthday').value;
+  const otherName = document.getElementById('otherName').value.trim();
+  const otherBirthday = document.getElementById('otherBirthday').value;
+  
+  if (!yourName || !yourBirthday || !otherName || !otherBirthday) return;
+  
+  const score = getFateScore(yourName, yourBirthday, otherName, otherBirthday);
+  const level = getFateLevel(score);
+  const reason = getFateReason(yourName, yourBirthday, otherName, otherBirthday, score);
+  const lang = getCurrentLanguage();
+  const t = translations[lang].testResult;
+  
+  const resultDiv = document.getElementById('fateResult');
+  resultDiv.innerHTML = `
+    <div class="text-2xl font-bold text-blue-700 mb-2">${t.compatibilityRating}：${level}</div>
+    <div class="text-xl mb-2">${t.score}：<span class="font-bold">${score}</span> / 100</div>
+    <div class="text-lg text-gray-700">${reason}</div>
+  `;
+  resultDiv.classList.remove('hidden');
+};
 
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', () => {
